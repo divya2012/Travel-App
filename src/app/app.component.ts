@@ -9,7 +9,6 @@ import { Driver } from './driver-detail/driver';
 import { DriverService } from './driver.service';
 
 declare var google: any;
-declare var jQuery:any;
 
 @Component({
   selector: 'app-root',
@@ -20,7 +19,7 @@ declare var jQuery:any;
 
 export class AppComponent implements OnInit {
   
-  title = '';
+  title = 'Trip Details of Drivers';
   drivers : Driver[];
   selectedDriver: Driver;
 
@@ -127,9 +126,6 @@ export class AppComponent implements OnInit {
     this.estimatedDistance = this.vc.estimatedDistance;
   }
 
-  scrollToBottom(): void {
-    jQuery('html, body').animate({ scrollTop: jQuery(document).height() }, 3000);
-  }
   private setPickUpLocation( place:any ) {
     //verify result
     if (place.geometry === undefined || place.geometry === null) {
