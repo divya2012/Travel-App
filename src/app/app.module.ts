@@ -6,13 +6,19 @@ import { HttpModule } from '@angular/http';
 import { DirectionsMapDirective } from './google-map.directive';
 
 import { AppComponent } from './app.component';
+import { DashboardComponent } from './dashboard.component';
+import { DriversComponent } from './drivers.component';
+import { DriverService } from './driver.service';
 import { DriverDetailComponent } from './driver-detail/driver-detail.component';
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    DashboardComponent,
+    DriversComponent,
     DriverDetailComponent,
     DirectionsMapDirective
   ],
@@ -21,12 +27,13 @@ import { AgmCoreModule, MapsAPILoader } from '@agm/core';
     FormsModule,
     HttpModule,
     ReactiveFormsModule,
+    AppRoutingModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDdAi__g9ItDFPrFu3OSXfRjsd05_9wcjg',
       libraries: ["places"]
     })
   ],
-  providers: [],
+  providers: [DriverService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

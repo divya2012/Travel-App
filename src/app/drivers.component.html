@@ -1,6 +1,5 @@
 <div class="container">
-<h1>{{title}}</h1>
-<!-- <h2>Drivers</h2>
+<h2>Drivers</h2>
 <ul class="drivers">
     <li *ngFor="let driver of drivers"
     [class.selected]="driver === selectedDriver"
@@ -8,7 +7,14 @@
     <span class="badge">{{driver.id}}</span> {{driver.name}}
   </li>
 </ul>
-<app-driver-detail [driver]="selectedDriver"></app-driver-detail>
+
+<div *ngIf="selectedDriver">
+  <h2>
+    {{selectedDriver.name | uppercase}} is selected
+  </h2>
+  <button (click)="gotoDetail()">View Details</button>
+</div>
+<!-- <app-driver-detail [driver]="selectedDriver"></app-driver-detail> -->
 
 <div class="form-group">
 <input placeholder="Enter source location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #pickupInput [formControl]="destinationInput"><br/>
@@ -17,5 +23,5 @@
 <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom" [styles]="mapCustomStyles">
 <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
 <sebm-google-map-directions [origin]="origin" [destination]="destination"></sebm-google-map-directions>
-</agm-map> -->
+</agm-map>
 </div>
