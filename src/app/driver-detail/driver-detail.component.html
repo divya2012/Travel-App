@@ -3,5 +3,11 @@
   <div><label>ID: </label>{{driver.id}}</div>
   <div><label>Name: </label>{{driver.name}}</div>
   <div><label>Place: </label>{{driver.place}}</div>
+  <div><label>Trip: </label>{{driver.src}} to {{driver.dest}}</div>
   <button (click)="goBack()">Back</button>
 </div>
+
+<agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+<agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+<sebm-google-map-directions [origin]="origin" [destination]="destination"></sebm-google-map-directions>
+</agm-map>

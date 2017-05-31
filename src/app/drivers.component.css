@@ -45,17 +45,4 @@
   margin-right: .8em;
   border-radius: 4px 0 0 4px;
 }
-.sebm-google-map-container {
-  height: 300px;
-  position: relative;
-  width: 75%;
-  margin-top: 20px;
-  float: left;
-}
-.form-control {
-  width: 400px;
-  border: 1px solid #ccc;
-  padding: 5px;
-  outline: none;
-  margin-top: 10px;
-}
+
