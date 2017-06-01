@@ -10,8 +10,9 @@ import 'rxjs/add/operator/switchMap';
 import { DirectionsMapDirective } from '../google-map.directive';
 import { Router } from '@angular/router';
 
-import { Driver } from './driver';
+import { Driver, Trip } from './driver';
 import { DriverService } from '../driver.service';
+import { MyFilterPipe } from '../my-filter.pipe';
 
 declare var google: any;
 
@@ -24,6 +25,10 @@ declare var google: any;
 
 export class DriverDetailComponent implements OnInit {
 	driver: Driver;
+	trips: Trip[];
+	trip: Trip;
+	selectedTrip: Trip;
+	filterargs = {id: '1'};
 
 	/* Google Map */
 	public latitude: number;
@@ -51,7 +56,18 @@ export class DriverDetailComponent implements OnInit {
 		this.location.back();
 	}
 
+	getTrips(): void {
+		this.driverService.getTrips().then(trips => this.trips = trips);
+	}
+
+	onSelectTrip(Trip: Trip): void {
+	    this.selectedTrip = Trip;
+	    this.getLocationJson(this.selectedTrip.src, 'ORG');
+	    this.getLocationJson(this.selectedTrip.dest, 'DES');
+	}
+
 	ngOnInit(): void {
+		this.getTrips();
 	   //set google maps defaults
 	    this.zoom = 10;
 	    this.latitude = 8.5241;
@@ -65,8 +81,6 @@ export class DriverDetailComponent implements OnInit {
 	    .switchMap((params: Params) => this.driverService.getDriver(+params['id']))
 	    .subscribe(driver => {
 	    	this.driver = driver;
-	    	this.getLocationJson(this.driver.src, 'ORG');
-	    	this.getLocationJson(this.driver.dest, 'DES');
 	    });
 	}
 

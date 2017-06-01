@@ -15,7 +15,7 @@
   background-color: #EEE;
   margin: .5em;
   padding: .3em 0;
-  height: 1.6em;
+  height: 2.5em;
   border-radius: 4px;
 }
 .drivers li.selected:hover {
@@ -40,8 +40,8 @@
   line-height: 1em;
   position: relative;
   left: -1px;
-  top: -4px;
-  height: 1.8em;
+  top: -3px;
+  height: 2.5em;
   margin-right: .8em;
   border-radius: 4px 0 0 4px;
 }

@@ -5,3 +5,10 @@ export class Driver {
   src: string;
   dest: string;
 }
+
+export class Trip {
+  id: number;
+  driver: number;
+  src: string;
+  dest: string;
+}

@@ -12,6 +12,7 @@ import { DriverService } from './driver.service';
 import { DriverDetailComponent } from './driver-detail/driver-detail.component';
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 import { AppRoutingModule } from './app-routing.module';
+import { MyFilterPipe } from './my-filter.pipe';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { AppRoutingModule } from './app-routing.module';
     DashboardComponent,
     DriversComponent,
     DriverDetailComponent,
-    DirectionsMapDirective
+    DirectionsMapDirective,
+    MyFilterPipe
   ],
   imports: [
     BrowserModule,

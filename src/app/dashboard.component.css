@@ -3,9 +3,6 @@
   padding-right: 20px;
   padding-bottom: 20px;
 }
-[class*='col-']:last-of-type {
-  padding-right: 0;
-}
 a {
   text-decoration: none;
 }
@@ -15,7 +12,7 @@ a {
   box-sizing: border-box;
 }
 h3 {
-  text-align: center; margin-bottom: 0;
+  text-align: center; margin-bottom: 20px;
 }
 h4 {
   position: relative;
@@ -41,7 +38,8 @@ h4 {
   color: #607d8b;
 }
 .grid-pad {
-  padding: 10px 0;
+  float: left;
+  width: 100%;
 }
 .grid-pad > [class*='col-']:last-of-type {
   padding-right: 20px;
