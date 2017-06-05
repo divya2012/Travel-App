@@ -19,14 +19,14 @@ export class DirectionsMapDirective {
   constructor (private gmapsApi: GoogleMapsAPIWrapper) {}
   updateDirections(){
     this.gmapsApi.getNativeMap().then(map => {
-              if(!this.originPlaceId || !this.destinationPlaceId ){
+              /*if(!this.originPlaceId || !this.destinationPlaceId ){
                 return;
-              }
+              }*/
               
               var directionsService = new google.maps.DirectionsService;
               var me = this;
-              var latLngA = new google.maps.LatLng({lat: this.origin.latitude, lng: this.origin.longitude });
-              var latLngB = new google.maps.LatLng({lat: this.destination.latitude, lng: this.destination.longitude });
+              var latLngA = this.origin;//new google.maps.LatLng({lat: this.origin.latitude, lng: this.origin.longitude });
+              var latLngB = this.destination;//new google.maps.LatLng({lat: this.destination.latitude, lng: this.destination.longitude });
               this.directionsDisplay.setMap(map);
               this.directionsDisplay.setOptions({
                 polylineOptions: {
@@ -37,8 +37,8 @@ export class DirectionsMapDirective {
                 });
               this.directionsDisplay.setDirections({routes: []});
               directionsService.route({
-                      origin: {placeId : this.originPlaceId },
-                      destination: {placeId : this.destinationPlaceId },
+                      origin: this.origin,//{placeId : this.originPlaceId },
+                      destination: this.destination,//{placeId : this.destinationPlaceId },
                       avoidHighways: true,
                       travelMode: google.maps.DirectionsTravelMode.DRIVING
                       //travelMode: 'DRIVING'

@@ -62,8 +62,19 @@ export class DriverDetailComponent implements OnInit {
 
 	onSelectTrip(Trip: Trip): void {
 	    this.selectedTrip = Trip;
-	    this.getLocationJson(this.selectedTrip.src, 'ORG');
-	    this.getLocationJson(this.selectedTrip.dest, 'DES');
+	    setTimeout(() => { 
+	    	this.vc.origin = this.selectedTrip.src;
+		    this.vc.destination = this.selectedTrip.dest;
+		    if(this.vc.directionsDisplay === undefined){ 
+		        this.mapsAPILoader.load().then(() => { 
+		        this.vc.directionsDisplay = new google.maps.DirectionsRenderer;
+		      }); 
+		    }
+
+		    //Update the directions
+		    this.vc.updateDirections();
+		    this.zoom = 12;
+	    }, 100);
 	}
 
 	ngOnInit(): void {
@@ -82,29 +93,6 @@ export class DriverDetailComponent implements OnInit {
 	    .subscribe(driver => {
 	    	this.driver = driver;
 	    });
-	}
-
-	getLocationJson(address: any, mode: any) {
-		return this.http.get('https://maps.googleapis.com/maps/api/geocode/json?address='+address)
-		.subscribe((response: any) => {
-		    let obj = response.json();
-		    if(mode === 'ORG') {
-		      this.vc.origin = { longitude: obj.results[0].geometry.location.lng, latitude: obj.results[0].geometry.location.lat }; 
-		      this.vc.originPlaceId = obj.results[0].place_id;
-		    } else {
-		      this.vc.destination = { longitude: obj.results[0].geometry.location.lng, latitude: obj.results[0].geometry.location.lat }; 
-		      this.vc.destinationPlaceId = obj.results[0].place_id;
-		    }
-		    if(this.vc.directionsDisplay === undefined){ 
-		        this.mapsAPILoader.load().then(() => { 
-		        this.vc.directionsDisplay = new google.maps.DirectionsRenderer;
-		      }); 
-		    }
-
-		    //Update the directions
-		    this.vc.updateDirections();
-		    this.zoom = 12;
-		});
 	}
 
 	private setCurrentPosition() {
