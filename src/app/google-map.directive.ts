@@ -18,15 +18,11 @@ export class DirectionsMapDirective {
  
   constructor (private gmapsApi: GoogleMapsAPIWrapper) {}
   updateDirections(){
-    this.gmapsApi.getNativeMap().then(map => {
-              /*if(!this.originPlaceId || !this.destinationPlaceId ){
-                return;
-              }*/
-              
+    this.gmapsApi.getNativeMap().then(map => {            
               var directionsService = new google.maps.DirectionsService;
               var me = this;
-              var latLngA = this.origin;//new google.maps.LatLng({lat: this.origin.latitude, lng: this.origin.longitude });
-              var latLngB = this.destination;//new google.maps.LatLng({lat: this.destination.latitude, lng: this.destination.longitude });
+              var latLngA = this.origin;
+              var latLngB = this.destination;
               this.directionsDisplay.setMap(map);
               this.directionsDisplay.setOptions({
                 polylineOptions: {
@@ -37,11 +33,10 @@ export class DirectionsMapDirective {
                 });
               this.directionsDisplay.setDirections({routes: []});
               directionsService.route({
-                      origin: this.origin,//{placeId : this.originPlaceId },
-                      destination: this.destination,//{placeId : this.destinationPlaceId },
+                      origin: this.origin,
+                      destination: this.destination,
                       avoidHighways: true,
                       travelMode: google.maps.DirectionsTravelMode.DRIVING
-                      //travelMode: 'DRIVING'
                     }, function(response: any, status: any) {
                                 if (status === 'OK') {
                                   me.directionsDisplay.setDirections(response);

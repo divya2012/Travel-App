@@ -83,7 +83,6 @@ export class DriverDetailComponent implements OnInit {
 	    this.zoom = 10;
 	    this.latitude = 8.5241;
 	    this.longitude = 76.9366;
-	    this.iconurl = '../image/map-icon.png';
 
 	    //set current position
 	    this.setCurrentPosition();
